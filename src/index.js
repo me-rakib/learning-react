@@ -9,6 +9,7 @@ setInterval(() => {
         <h1 className="heading" tabIndex={index}>
             <span className="text">Hello {new Date().toLocaleTimeString()}</span>
             <img src="" alt="" />
+            <img src="" alt="" />
         </h1>
     );
     ReactDOM.render(element, document.getElementById('root'));
