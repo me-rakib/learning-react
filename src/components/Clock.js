@@ -2,7 +2,12 @@
 import React from 'react';
 
 class Clock extends React.Component {
-    state = { date: new Date() };
+    state = { date: new Date(), locale: 'bn-BD' };
+    // constructor(props) {
+    //     super(props);
+    //     this.state = { date: new Date(), locale: 'bn-BD' };
+    //     this.clickHandle = this.clickHandle.bind(this);
+    // }
 
     componentDidMount() {
         this.clockTimer = setInterval(() => this.tick(), 1000);
@@ -12,6 +17,12 @@ class Clock extends React.Component {
         clearInterval(this.clockTimer);
     }
 
+    clickHandle = () => {
+        this.setState({
+            locale: 'en-US',
+        });
+    };
+
     tick() {
         this.setState({
             date: new Date(),
@@ -19,12 +30,17 @@ class Clock extends React.Component {
     }
 
     render() {
+        const { date, locale } = this.state;
         return (
-            <h1 className="heading">
-                <span className="text">{this.state.date.toLocaleTimeString()}</span>
-            </h1>
+            <div>
+                <h1 className="heading">
+                    <span className="text">{date.toLocaleTimeString(locale)}</span>
+                </h1>
+                <button type="button" onClick={this.clickHandle}>
+                    Click Me
+                </button>
+            </div>
         );
     }
 }
-
 export default Clock;
