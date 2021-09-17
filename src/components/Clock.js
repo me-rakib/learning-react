@@ -1,5 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import Button from './Button';
 
 class Clock extends React.Component {
     state = { date: new Date(), locale: 'bn-BD' };
@@ -17,9 +18,9 @@ class Clock extends React.Component {
         clearInterval(this.clockTimer);
     }
 
-    clickHandle = () => {
+    clickHandle = (local) => {
         this.setState({
-            locale: 'en-US',
+            locale: local,
         });
     };
 
@@ -31,14 +32,13 @@ class Clock extends React.Component {
 
     render() {
         const { date, locale } = this.state;
+        console.log('Clock');
         return (
             <div>
                 <h1 className="heading">
                     <span className="text">{date.toLocaleTimeString(locale)}</span>
                 </h1>
-                <button type="button" onClick={this.clickHandle}>
-                    Click Me
-                </button>
+                <Button change={this.clickHandle} local="en-US" />
             </div>
         );
     }
